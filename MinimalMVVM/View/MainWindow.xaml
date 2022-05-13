@@ -1,0 +1,27 @@
+﻿<Window x:Class="MinimalMVVM.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:ViewModel="clr-namespace:MinimalMVVM.ViewModel" 
+       
+        Title="MainWindow" Height="391" Width="319"
+        mc:Ignorable="d">
+    <Window.DataContext>
+        <ViewModel:Presenter/>
+    </Window.DataContext>
+    <Window.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding ConvertTextCommand}"/>
+    </Window.InputBindings>
+
+    <StackPanel Height="336">
+        <Label Foreground="Green" Height="25" Width="102" Content="Text To Convert" RenderTransformOrigin="0.413,0.376"/>
+        <TextBox Text="{Binding SomeText, UpdateSourceTrigger=PropertyChanged}" Margin="5"/>
+        <Label Foreground="Green" Margin="5,5,5,0" Content="History" HorizontalContentAlignment="Center"/>
+        <ListBox   Height="170" Margin="3" ItemsSource="{Binding History}"/>
+        <Button Foreground =" Green" x:Name="btnUpperCase" Content="CAPS" Width="72" Click="btnUpperCase_Click"/>
+        <Button Foreground =" Green" x:Name="btnLowerCase" Content="no caps" Width="72" Click="btnLowerCase_Click"/>
+        <Button Command="{Binding ConvertTextCommand}" Content="Convert"/>
+    </StackPanel>
+   
+</Window>
